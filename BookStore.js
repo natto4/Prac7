@@ -3,6 +3,7 @@ let listOfAllKnownAuthors = []
 class BookStore
 {
     constructor(name, address, owner)
+    //Contructs bookstore instance
     {
         this._name = name;
         this._address = address;
@@ -12,6 +13,7 @@ class BookStore
     }
 
     authorKnown(authorName)
+    //Returns true if the author is found in the bookstore
     {
         let foundThem = false;
         for (let pos = 0; pos < listOfAllKnownAuthors.length; pos++)
@@ -25,14 +27,15 @@ class BookStore
     }
 
     addBook(bookInstance, copies)
+    //Adds books to a _booksAvailable array
     {
-        let positionOfBook = this.checkForBook(bookInstance);
-        if (positionOfBook != null)
+        let positionOfBook = this.checkForBook(bookInstance); 
+        if (positionOfBook != null) //Check if book is already in bookstore
         {
              let foundBook = this._booksAvailable[positionOfBook];
-             foundBook.copies += copies;
+             foundBook.copies += copies; //adds on to the existing number of copies
              console.log("Added " + copies + " copies of " + foundBook.book);
-             listOfAllKnownAuthors.push(foundBook.book.author);
+             listOfAllKnownAuthors.push(foundBook.book.author); //MOVE THIS TO THE ELSE STATEMENT??
         }
         else
         {
@@ -40,34 +43,35 @@ class BookStore
                  book: bookInstance,
                  copies: copies
              };
-             this._booksAvailable.push(bookCopies);
+             this._booksAvailable.push(bookCopies); //Adds a new book object to the _booksAvailable array 
              console.log("Added " + copies + " copies of a new book: " + bookInstance);
         }
 
-        this._totalCopiesOfAllBooks += copies;
+        this._totalCopiesOfAllBooks += copies; //adjusts the total number of books in the store (adds)
     }
 
     sellBook(bookInstance, numberSold)
+    //Removes copies of book from book array
     {
         let positionOfBook = this.checkForBook(bookInstance);
-        if (positionOfBook != null)
+        if (positionOfBook != null) //Check if book is already in bookstore
         {
             let foundBook = this._booksAvailable[positionOfBook];
-            if (numberSold > this._booksAvailable[positionOfBook].copies)
+            if (numberSold > this._booksAvailable[positionOfBook].copies) //accounting for if there aren't enough copies to sell
             {
                 console.log("Not enough copies of " + foundBook.book + " to sell");
             }
             else
             {
                 foundBook.copies -= numberSold;
-                if (foundBook.copies === 0)
+                if (foundBook.copies === 0) //if there are no more copies left
                 {
-                    this._booksAvailable.pop(PositionOfBook);
+                    this._booksAvailable.pop(PositionOfBook); //Remove book from bookstore
                     this._NumTitles -= 1;
-                    let foundAuth = this.authorKnown(foundBook.book.author);
-                    listOfAllKnownAuthors.pop(foundAuth);
+                    let foundAuth = this.authorKnown(foundBook.book.author); 
+                    listOfAllKnownAuthors.pop(foundAuth); //remove author from known authors
                 }
-                this._totalCopiesOfAllBooks -= numberSold;
+                this._totalCopiesOfAllBooks -= numberSold; //adjusts the total number of books in the store (subtracts)
                 console.log("Sold " + numberSold + " copies of " + foundBook.book);
             }
         }
@@ -78,6 +82,9 @@ class BookStore
     }
 
     checkForBook(bookInstance)
+    //Check if book is in bookstore
+    //Return a book number (var currBookNum) if it is in store
+    //Return null if book cannot be found
     {
         let currBookNum = 0;
         while (currBookNum < this._booksAvailable.length)
@@ -96,31 +103,37 @@ class BookStore
     }
 
     get name()
+    //Returns name of bookstore
     {
         return this._name;
     }
 
     set name(newName)
+    //sets the name of the bookstore
     {
         this._name = newName;
     }
 
     get address()
+    //returns address of bookstore
     {
         return this._address;
     }
 
     set address(newAddress)
+    //sets address of bookstore
     {
         this._address = newAddress;
     }
 
     get owner()
+    //returns name of owner of bookstore
     {
         return this._owner;
     }
 
-    set address(newOwner)
+    set address(newOwner) //SHOULD BE SET OWNER. THERE ARE TWO METHODS WITH THE SAME NAME.
+    //sets the name of the owner
     {
         this._owner = newOwner;
     }
@@ -129,6 +142,7 @@ class BookStore
 class Book
 {
     constructor(title, author, publicationYear, price)
+    //Contructs book instance
     {
         this._title = title;
         this._author = author;
@@ -141,11 +155,13 @@ class Book
     }
 
     isTheSame(otherBook)
+    //Compares the price of the two books??????????
     {
         return otherBook.price === this.price;
     }
 
     authorKnown(authorName)
+    //Returns true if the author is known in the bookstore
     {
         let foundThem = false;
         for (let pos = 0; pos < listOfAllKnownAuthors.length; pos++)
@@ -159,26 +175,31 @@ class Book
     }
 
     get title()
+    //Returns the title of the book
     {
         return this._title;
     }
 
     get author()
+    //Returns the author of the book
     {
         return this._author;
     }
 
     get publicationYear()
+    //Returns the publication year of the book
     {
         return this._publicationYear;
     }
 
     get price()
+    //Returns the price of the book
     {
         return this._price;
     }
 
-    toString()
+    toString() //OVERIDING TOSTRING METHOD
+    //Converts the books detail to a string
     {
         return this.title + ", " + this.author + ". " + this.publicationYear + " ($" + this.price + ")";
     }
@@ -196,7 +217,7 @@ flourishAndBlotts.sellBook(monsterBookToSell, 200);
 flourishAndBlotts.addBook(spellBook, 40);
 flourishAndBlotts.addBook(spellBook, 20);
 flourishAndBlotts.sellBook(spellBook, 15);
-flourishAndBlotts.addBook(monsterBookToSell, -30);
+flourishAndBlotts.addBook(monsterBookToSell, -30); //SHOULD BE SELLBOOK
 flourishAndBlotts.sellBook(monsterBookToSell, 750);
 
 console.log("Authors known: " + listOfAllKnownAuthors);
