@@ -1,10 +1,11 @@
 let listOfAllKnownAuthors = []
 
+// Bookstore class
 class BookStore
 {
     constructor(name, address, owner)
-    //Contructs bookstore instance
     {
+        // Private attributes:
         this._name = name;
         this._address = address;
         this._owner = owner;
@@ -12,6 +13,8 @@ class BookStore
         this._totalCopiesOfAllBooks = 0
     }
 
+    // Public methods:
+    
     authorKnown(authorName)
     //Returns true if the author is found in the bookstore
     {
@@ -132,28 +135,32 @@ class BookStore
         return this._owner;
     }
 
-    set address(newOwner) //SHOULD BE SET OWNER. THERE ARE TWO METHODS WITH THE SAME NAME.
+    set owner(newOwner) 
     //sets the name of the owner
     {
         this._owner = newOwner;
     }
 }
 
+//Book class
 class Book
 {
     constructor(title, author, publicationYear, price)
     //Contructs book instance
     {
+        // Private attributes:
         this._title = title;
         this._author = author;
         this._publicationYear = publicationYear;
         this._price = price;
-        if (this.authorKnown(this._author) === false)
+        if (this.authorKnown(this._author) === false) //adds a a new author if the author is not already in the bookstore
         {
             listOfAllKnownAuthors.push(this._author)
         }
     }
 
+    // Public methods:
+    
     isTheSame(otherBook)
     //Compares the price of the two books??????????
     {
@@ -198,7 +205,7 @@ class Book
         return this._price;
     }
 
-    toString() //OVERIDING TOSTRING METHOD
+    toString()
     //Converts the books detail to a string
     {
         return this.title + ", " + this.author + ". " + this.publicationYear + " ($" + this.price + ")";
