@@ -30,7 +30,7 @@ class BookStore
     }
 
     addBook(bookInstance, copies)
-    //Adds books to a _booksAvailable array
+    //Adds books to _booksAvailable array
     {
         let positionOfBook = this.checkForBook(bookInstance); 
         if (positionOfBook != null) //Check if book is already in bookstore
@@ -38,7 +38,7 @@ class BookStore
              let foundBook = this._booksAvailable[positionOfBook];
              foundBook.copies += copies; //adds on to the existing number of copies
              console.log("Added " + copies + " copies of " + foundBook.book);
-             listOfAllKnownAuthors.push(foundBook.book.author); //MOVE THIS TO THE ELSE STATEMENT??
+             listOfAllKnownAuthors.push(foundBook.book.author); //REMOVE THIS STATEMENT
         }
         else
         {
@@ -162,7 +162,7 @@ class Book
     // Public methods:
     
     isTheSame(otherBook)
-    //Compares the price of the two books??????????
+    //Checks if two books are the same
     {
         return otherBook.price === this.price;
     }
@@ -224,7 +224,7 @@ flourishAndBlotts.sellBook(monsterBookToSell, 200);
 flourishAndBlotts.addBook(spellBook, 40);
 flourishAndBlotts.addBook(spellBook, 20);
 flourishAndBlotts.sellBook(spellBook, 15);
-flourishAndBlotts.addBook(monsterBookToSell, -30); //SHOULD BE SELLBOOK
+flourishAndBlotts.addBook(monsterBookToSell, -30);
 flourishAndBlotts.sellBook(monsterBookToSell, 750);
 
 console.log("Authors known: " + listOfAllKnownAuthors);
