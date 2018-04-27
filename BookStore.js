@@ -107,7 +107,7 @@ class BookStore
             else
             {
                 currBookNum += 1;
-            }    
+            }
         }
         return null;//this is unecessary?
     }
@@ -173,6 +173,20 @@ class Book
     {
         return otherBook.price === this.price;
     }
+
+    authorKnown(authorName)
+   //Returns true if the author is known in the bookstore
+   {
+       let foundThem = false;
+       for (let pos = 0; pos < listOfAllKnownAuthors.length; pos++)
+       {
+           if (authorName === listOfAllKnownAuthors[pos])
+           {
+               foundThem = true;
+           }
+       }
+       return foundThem;
+   }
 
     get title()
     //Returns the title of the book
