@@ -14,7 +14,7 @@ class BookStore
     }
 
     // Public methods:
-    
+
     authorKnown(authorName)
     //Returns true if the author is found in the bookstore
     {
@@ -32,7 +32,7 @@ class BookStore
     addBook(bookInstance, copies)
     //Adds books to _booksAvailable array
     {
-        let positionOfBook = this.checkForBook(bookInstance); 
+        let positionOfBook = this.checkForBook(bookInstance);
         if (positionOfBook != null) //Check if book is already in bookstore
         {
              let foundBook = this._booksAvailable[positionOfBook];
@@ -46,7 +46,7 @@ class BookStore
                  book: bookInstance,
                  copies: copies
              };
-             this._booksAvailable.push(bookCopies); //Adds a new book object to the _booksAvailable array 
+             this._booksAvailable.push(bookCopies); //Adds a new book object to the _booksAvailable array
              console.log("Added " + copies + " copies of a new book: " + bookInstance);
         }
 
@@ -71,7 +71,7 @@ class BookStore
                 {
                     this._booksAvailable.pop(PositionOfBook); //Remove book from bookstore
                     this._NumTitles -= 1;
-                    let foundAuth = this.authorKnown(foundBook.book.author); 
+                    let foundAuth = this.authorKnown(foundBook.book.author);
                     listOfAllKnownAuthors.pop(foundAuth); //remove author from known authors
                 }
                 this._totalCopiesOfAllBooks -= numberSold; //adjusts the total number of books in the store (subtracts)
@@ -82,6 +82,20 @@ class BookStore
         {
             console.log(bookInstance + " not found");
         }
+    }
+
+    authorKnown(authorName)
+    //Returns true if the author is known in the bookstore
+    {
+        let foundThem = false;
+        for (let pos = 0; pos < listOfAllKnownAuthors.length; pos++)
+        {
+            if (authorName === listOfAllKnownAuthors[pos])
+            {
+                foundThem = true;
+            }
+        }
+        return foundThem;
     }
 
     checkForBook(bookInstance)
@@ -135,7 +149,7 @@ class BookStore
         return this._owner;
     }
 
-    set owner(newOwner) 
+    set owner(newOwner)
     //sets the name of the owner
     {
         this._owner = newOwner;
@@ -160,26 +174,14 @@ class Book
     }
 
     // Public methods:
-    
+
     isTheSame(otherBook)
     //Checks if two books are the same
     {
         return otherBook.price === this.price;
     }
 
-    authorKnown(authorName)
-    //Returns true if the author is known in the bookstore
-    {
-        let foundThem = false;
-        for (let pos = 0; pos < listOfAllKnownAuthors.length; pos++)
-        {
-            if (authorName === listOfAllKnownAuthors[pos])
-            {
-                foundThem = true;
-            }
-        }
-        return foundThem;
-    }
+
 
     get title()
     //Returns the title of the book
