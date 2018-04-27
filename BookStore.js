@@ -38,7 +38,9 @@ class BookStore
              let foundBook = this._booksAvailable[positionOfBook];
              foundBook.copies += copies; //adds on to the existing number of copies
              console.log("Added " + copies + " copies of " + foundBook.book);
-             listOfAllKnownAuthors.push(foundBook.book.author); //REMOVE THIS STATEMENT
+             //listOfAllKnownAuthors.push(foundBook.book.author);
+             //This statement is unecessary as the author is already known
+             //the book has already been identified in the bookstore
         }
         else
         {
@@ -48,6 +50,12 @@ class BookStore
              };
              this._booksAvailable.push(bookCopies); //Adds a new book object to the _booksAvailable array
              console.log("Added " + copies + " copies of a new book: " + bookInstance);
+
+             if (authorKnown(bookCopies.book.author) != true)
+             {
+                  listOfAllKnownAuthors.push(bookCopies.book.author); 
+             }
+             //If the book has a new author, the new author will be added
         }
 
         this._totalCopiesOfAllBooks += copies; //adjusts the total number of books in the store (adds)
@@ -166,8 +174,6 @@ class Book
     {
         return otherBook.price === this.price;
     }
-
-
 
     get title()
     //Returns the title of the book
