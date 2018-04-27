@@ -1,3 +1,4 @@
+
 let listOfAllKnownAuthors = []
 
 // Bookstore class
@@ -51,7 +52,7 @@ class BookStore
              this._booksAvailable.push(bookCopies); //Adds a new book object to the _booksAvailable array
              console.log("Added " + copies + " copies of a new book: " + bookInstance);
 
-             if (authorKnown(bookCopies.book.author) != true)
+             if (this.authorKnown(bookCopies.book.author) != true)
              {
                   listOfAllKnownAuthors.push(bookCopies.book.author);
              }
