@@ -53,7 +53,7 @@ class BookStore
 
              if (authorKnown(bookCopies.book.author) != true)
              {
-                  listOfAllKnownAuthors.push(bookCopies.book.author); 
+                  listOfAllKnownAuthors.push(bookCopies.book.author);
              }
              //If the book has a new author, the new author will be added
         }
@@ -106,11 +106,10 @@ class BookStore
             }
             else
             {
-                return null;
-            }
-            currBookNum += 1;
+                currBookNum += 1;
+            }    
         }
-        return null;
+        return null;//this is unecessary?
     }
 
     get name()
