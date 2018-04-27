@@ -84,19 +84,6 @@ class BookStore
         }
     }
 
-    authorKnown(authorName)
-    //Returns true if the author is known in the bookstore
-    {
-        let foundThem = false;
-        for (let pos = 0; pos < listOfAllKnownAuthors.length; pos++)
-        {
-            if (authorName === listOfAllKnownAuthors[pos])
-            {
-                foundThem = true;
-            }
-        }
-        return foundThem;
-    }
 
     checkForBook(bookInstance)
     //Check if book is in bookstore
