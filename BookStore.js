@@ -33,7 +33,7 @@ class BookStore
     //Adds books to _booksAvailable array
     {
         let positionOfBook = this.checkForBook(bookInstance);
-        if (positionOfBook != null) //Check if book is already in bookstore
+        if (positionOfBook != null) //Check if book is already in bookstore, null means the book is not in the store
         {
              let foundBook = this._booksAvailable[positionOfBook];
              foundBook.copies += copies; //adds on to the existing number of copies
@@ -83,7 +83,6 @@ class BookStore
             console.log(bookInstance + " not found");
         }
     }
-
 
     checkForBook(bookInstance)
     //Check if book is in bookstore
